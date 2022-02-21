@@ -1,9 +1,14 @@
 import express from  'express'
 import cors from 'cors';
 
+import routes from './routes.js';
+
 class App {
     constructor() {
         this.server = express();
+        this.MiddlewareConfig();
+        this.ConfigCors();
+        this.Routes();
     }
 
     MiddlewareConfig() {
@@ -12,6 +17,10 @@ class App {
 
     ConfigCors() {
         this.server.use(cors());
+    }
+
+    Routes() {
+        this.server.use(routes);
     }
 }
 
