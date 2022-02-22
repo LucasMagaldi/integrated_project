@@ -4,13 +4,13 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-connection
+/*connection
     .authenticate()
     .then(()=>{
         console.log("DB Connection")
     }).catch((e)=>{
         console.log(e)
-    });
+    });*/
 
 
 app.listen(3000, () => {

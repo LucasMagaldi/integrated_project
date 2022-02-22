@@ -1,4 +1,6 @@
 import { Router } from "express"
+import LoginController from "./app/Controllers/LoginController.js";
+
 class Routes {
     constructor() {
         this.routes = Router();
@@ -6,9 +8,7 @@ class Routes {
     }
 
     CreateRoutes() {
-        this.routes.get('/', (req,res) =>{
-            return res.status(200).json({mensage: "Flamengo"})
-        })
+        this.routes.post('/', LoginController.Create);
     }
 }
 
