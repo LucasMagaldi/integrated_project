@@ -8,7 +8,7 @@ class Routes {
     }
 
     CreateRoutes() {
-        this.routes.post('/', LoginController.Create);
+        this.routes.post('/acounts/signup', LoginController.Create);
     }
 }
 

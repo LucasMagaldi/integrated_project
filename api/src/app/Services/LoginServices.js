@@ -2,9 +2,9 @@ import User from "../Model/Users.js";
 
 
 class LoginServices {
-    async storeUser(name, email, password, doc) {
+    async storeUser(name, email, password, phone) {
         try{
-            await User.create({name, email, password, doc});
+            await User.create({name, email, password, phone});
             return true;
         } catch (error){
             console.log(error);
