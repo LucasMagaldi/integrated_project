@@ -12,6 +12,7 @@
   "author": "Lucas Magaldi",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "brcypt": "^1.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",

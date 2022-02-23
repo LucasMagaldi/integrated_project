@@ -1,11 +1,35 @@
+import jwt from 'jsonwebtoken';
+
 import LoginServices from "../Services/LoginServices.js";
 
 class LoginController {
     async Create(req,res) {
         const { name, email, password, phone } = req.body;
+
+        if(name == '' || name ==  ' ' || name.length <=2) {
+            return res.status(400).json({mensage: 'Inform a valid name'});
+        }
+        if(email == '' || email ==  ' ') {
+            return res.status(400).json({mensage: 'Inform a valid email address'});
+        }
+        if(password == '' || password ==  ' ') {
+            return res.status(400).json({mensage: 'Choose a password'});
+        }
+        if(password.length < 8) {
+            return res.status(400).json({mensage: 'Password must have more then 8 digits'});
+        }
         const response = await LoginServices.storeUser(name, email, password, phone);
-        console.log(response);
-        return res.status(200).json({ok:"OKOKOK"})
+        if (!response) {
+            return res.status(500).json({mensage:"Error System", status:false})
+        }
+        return res.status(200).json({mensage:"Pass", status:true})
+    }
+
+    async SignIn(req,res) {
+        const { login, password } = req.body;
+        const response = await LoginServices.signIn(login, password);
+
+        return res.status(200).json({response});
     }
 }
 
