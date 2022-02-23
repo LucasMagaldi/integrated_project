@@ -46,6 +46,7 @@ class LoginController {
                 {expiresIn: "1h"}
                 )
         });
+        
     }
 }
 
