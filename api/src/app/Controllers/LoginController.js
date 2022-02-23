@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import auth from '../../config/auth.js';
 
 import LoginServices from "../Services/LoginServices.js";
 
@@ -29,7 +30,22 @@ class LoginController {
         const { login, password } = req.body;
         const response = await LoginServices.signIn(login, password);
 
-        return res.status(200).json({response});
+        if(!response) {
+            return res.status(400).json({
+                status: false, 
+                mensage: "Invalid password"
+            });
+        }
+
+        return res.status(200).json({
+            status: true,
+            token: jwt
+            .sign(
+                {id:response.id, name: response.name},
+                auth.secret,
+                {expiresIn: "1h"}
+                )
+        });
     }
 }
 

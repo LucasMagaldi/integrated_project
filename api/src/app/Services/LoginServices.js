@@ -1,4 +1,5 @@
 import User from "../Model/Users.js";
+import Login from '../Model/Login.js';
 import bcrypt from 'bcrypt';
 
 class LoginServices {
@@ -23,18 +24,28 @@ class LoginServices {
             const isEmail = login.indexOf('@');
             if(isEmail === -1){
                 const response = await this.findByPhone(login);
-                console.log(response);
 
                 const success = await bcrypt.compare(loginPassword, response.password);
                 if(!success) return false
-                return true
+
+                const { id, name } = await Login.create({
+                    name: response.name,
+                    email: response.email,
+                    info: `Sign via phone number: ${login}`
+                });
+                return { id, name }
             }
 
             const response = await this.findByEmail(login);
             const success = await bcrypt.compare(loginPassword, response.password);
             if(!success) return false
-         
-            return true
+
+            const { id, name } = await Login.create({
+                    name: response.name,
+                    email: response.email,
+                    info: `Sign via email: ${login}`
+                });
+             return { id, name }
         } catch (e){
             console.log(e);
             return false;
