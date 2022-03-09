@@ -9,6 +9,9 @@ class Routes {
     }
 
     CreateRoutes() {
+        this.routes.get('/', (req,res) => {
+            return res.status(200).json({})
+        })
         this.routes.post('/acounts/signup', LoginController.Create);
         this.routes.post('/acounts/signin', LoginController.SignIn);
         this.routes.use(Jwt);

@@ -7,19 +7,22 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "cMigration": "npx sequelize db:migrate",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Lucas Magaldi",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^27.4.1",
     "bcrypt": "^5.0.1",
     "brcypt": "^1.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "jest": "^27.5.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "rand-token": "^1.0.1",
+    "supertest": "^6.2.2",
     "util": "^0.12.4"
   },
   "devDependencies": {
