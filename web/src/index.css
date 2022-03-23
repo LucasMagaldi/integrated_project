@@ -41,36 +41,69 @@
    --bodyFont: 'Cabin', Sans-Serif;
    --small-text: 0.875rem;
    --extra-small-text: 0.7em;
+   --textColor: var(--grey-900);
    /* rest of the vars */
    --backgroundColor: var(--grey-50);
 
    /*   */
-   --fluid-width: 90vh;
+   --fluid-width: 1200px;
    --max-width: 1120px;
-   --primary-font: 12px;
+   --primary-font: 18px;
 }
 
 body {
   margin: 0;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
   font-family: var(--bodyFont);
   font-size: var(--primary-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+/* CSS Main page */
 .container-main {
   width: var(--fluid-width);
   max-width: var(--max-width);
-  margin: 0 30px;
+  margin: 0 10rem;
+}
+.container-main > h1 {
+  margin: 0;
+}
+
+.page {
+  min-height: calc(100vh - 15rem);
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .logo-container {
   display: flex;
   justify-content:flex-start;
-  margin: 30px 30px;
+  margin: 10px 30px;
   cursor: pointer;
   width: 70px;
 }
+
+.main-img {
+  display: block;
+  margin-top: 30px;
+}
+
+.main-description {
+  padding-top: 15px;
+}
+
+/*  */
+
+.img {
+  object-fit: cover;
+  width: 100%;
+  display: block;
+}
+
 
 .logoImg {
   width: 50px;
