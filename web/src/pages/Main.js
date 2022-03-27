@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import Logo from '../components/Logo';
 import world from '../assets/images/world.svg';
 
@@ -19,7 +19,7 @@ export const Main = () => {
                     Met the best companies in your country and world.
                     Apply to position that companies with you and be happy.
               </p>
-              <button>Sign in</button>
+              <Link to='/register'>Sign in / Sign Up</Link>
             </div>    
             <img src={world} className='img main-img'/>  
         </div>
