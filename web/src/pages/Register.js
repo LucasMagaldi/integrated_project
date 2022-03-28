@@ -16,11 +16,43 @@ const Register = () => {
         setValues({...values, isMember: !values.isMember})
     }
 
+    const handleChange = (e) => {
+        setValues({...values, [e.target.name]: e.target.value});
+        const x = values;
+        console.log(x);
+    }
+
     return (
         <section className="full-page">
             <form className="form">
                 <Logo />
 
+                {
+                    !values.isMember && 
+                    <FormRow 
+                    type='text'
+                    name='name'
+                    labelText='name'
+                    value={values.name}
+                    handleChange={handleChange}
+                />
+                }
+
+                <FormRow 
+                    type='email'
+                    name='email'
+                    labelText='email'
+                    handleChange={handleChange}
+                    value={values.email}
+                />
+
+                <FormRow 
+                    type='password'
+                    name='password'
+                    labelText='password'
+                    value={values.password}
+                    handleChange={handleChange}
+                />
                 {
                     values.isMember ? 
                     <p> Don't have account?
