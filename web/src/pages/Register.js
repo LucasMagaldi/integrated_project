@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormRow from "../components/FormRow";
 import Logo from "../components/Logo";
+import mainWrapper from '../assets/wrappers/mainWrapper';
 
 const initialState = {
   name: '',
@@ -14,6 +15,8 @@ const Register = () => {
 
     const toggleMember = () => {
         setValues({...values, isMember: !values.isMember})
+        const res = mainWrapper.get('/');
+        console.log(res)
     }
 
     const handleChange = (e) => {
@@ -53,6 +56,17 @@ const Register = () => {
                     value={values.password}
                     handleChange={handleChange}
                 />
+
+                { !values.isMember ?
+                    <button type="button">
+                        Register
+                    </button>
+                    :
+                    <button type="button">
+                        SignIn
+                    </button>
+                }
+
                 {
                     values.isMember ? 
                     <p> Don't have account?

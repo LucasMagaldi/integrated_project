@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../components/Logo';
 import world from '../assets/images/world.svg';
+import mainApi from '../services/mainAPI';
 
-import mainWrapper from '../assets/wrappers/mainWrapper';
+
 
 export const Main = () => {
   return (

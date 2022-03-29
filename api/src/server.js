@@ -13,6 +13,6 @@ connection
     });
 
 
-app.listen(3000, () => {
-    console.log("Play")
+app.listen(process.env.PORT, () => {
+    console.log("Play", process.env.PORT);
 })

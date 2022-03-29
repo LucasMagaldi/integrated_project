@@ -10,6 +10,7 @@ class Routes {
 
     CreateRoutes() {
         this.routes.get('/', (req,res) => {
+            console.log(req.headers);
             return res.status(200).json({})
         })
         this.routes.post('/acounts/signup', LoginController.Create);
