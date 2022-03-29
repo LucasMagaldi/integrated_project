@@ -2,27 +2,38 @@ import { useState } from "react";
 import FormRow from "../components/FormRow";
 import Logo from "../components/Logo";
 import mainWrapper from '../assets/wrappers/mainWrapper';
+import mainApi from "../services/mainAPI";
 
 const initialState = {
   name: '',
   email: '',
   password: '',
+  phoneNumber: '',
   isMember: false
 }
 
 const Register = () => {
     const [values, setValues] = useState(initialState);
 
-    const toggleMember = () => {
+    const toggleMember = async() => {
         setValues({...values, isMember: !values.isMember})
-        const res = mainWrapper.get('/');
+        const res = await mainApi.get('/');
         console.log(res)
     }
 
     const handleChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value});
-        const x = values;
-        console.log(x);
+    }
+
+    const register = async() => {
+        const res = await mainApi.post('/acounts/signup', {
+            name: values.name,
+            email:values.email,
+            password: values.password,
+            phone: values.phoneNumber
+        });
+
+        console.log(res)
     }
 
     return (
@@ -40,7 +51,16 @@ const Register = () => {
                     handleChange={handleChange}
                 />
                 }
-
+                 {
+                !values.isMember && 
+                    <FormRow 
+                        type='text'
+                        name='phone'
+                        labelText='phone'
+                        handleChange={handleChange}
+                        value={values.phone}
+                    />
+                }
                 <FormRow 
                     type='email'
                     name='email'
@@ -58,7 +78,7 @@ const Register = () => {
                 />
 
                 { !values.isMember ?
-                    <button type="button">
+                    <button type="button" onClick={register}>
                         Register
                     </button>
                     :
