@@ -41,6 +41,14 @@ const Register = () => {
         console.log(res)
     }
 
+    const login = async() => {
+        const res = await mainApi.post('/acounts/signin', {
+            login: values.email,
+            password: values.password
+        });
+        console.log(res)
+    }
+
     return (
         <section className="full-page">
             <form className="form">
@@ -87,7 +95,7 @@ const Register = () => {
                         Register
                     </button>
                     :
-                    <button type="button">
+                    <button type="button" onClick={login}>
                         SignIn
                     </button>
                 }
