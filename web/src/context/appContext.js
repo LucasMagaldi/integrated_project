@@ -12,11 +12,13 @@ const initialState = {
 
 const appContext = React.createContext();
 
-const appProvider = ({children}) => {
+const AppProvider = ({children}) => {
     const [state, dispach] = useReducer(reducer, initialState);
 
     const displayAlert = () => {
         dispach({ type: DISPLAY_ALERT});
+        const s = state;
+        console.log(s);
     }
 
 
@@ -31,4 +33,4 @@ const useAppContext = () => {
     return useContext(appContext)
 }
 
-export { useAppContext, initialState, appProvider }
+export { useAppContext, initialState, AppProvider }

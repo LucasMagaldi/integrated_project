@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+import { useAppContext } from "../context/appContext";
 import FormRow from "../components/FormRow";
 import Logo from "../components/Logo";
 import mainWrapper from '../assets/wrappers/mainWrapper';
@@ -12,8 +14,11 @@ const initialState = {
   isMember: false
 }
 
+
 const Register = () => {
     const [values, setValues] = useState(initialState);
+
+    const { displayAlert, isLoading, showAlert } = useAppContext();
 
     const toggleMember = async() => {
         setValues({...values, isMember: !values.isMember})
@@ -26,13 +31,13 @@ const Register = () => {
     }
 
     const register = async() => {
+        displayAlert();
         const res = await mainApi.post('/acounts/signup', {
             name: values.name,
             email:values.email,
             password: values.password,
             phone: values.phoneNumber
         });
-
         console.log(res)
     }
 
