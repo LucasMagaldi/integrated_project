@@ -17,6 +17,7 @@ const initialState = {
 
 const Register = () => {
     const [values, setValues] = useState(initialState);
+    const [token, setToken] = useState('')
 
     const { displayAlert, isLoading, showAlert } = useAppContext();
 
@@ -46,7 +47,9 @@ const Register = () => {
             login: values.email,
             password: values.password
         });
-        console.log(res)
+        //console.log(res.data.token)
+        setToken(res.data.token);
+        console.log(token)
     }
 
     return (
