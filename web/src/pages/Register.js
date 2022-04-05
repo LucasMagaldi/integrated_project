@@ -23,8 +23,8 @@ const Register = () => {
 
     const toggleMember = async() => {
         setValues({...values, isMember: !values.isMember})
-        const res = await mainApi.get('/');
-        console.log(res)
+        /*const res = await mainApi.get('/');
+        console.log(res)*/
     }
 
     const handleChange = (e) => {
@@ -32,30 +32,73 @@ const Register = () => {
     }
 
     const register = async() => {
-        displayAlert();
+        if (values.name.length == 0 || values.name == '') {
+            displayAlert();
+            console.log("Name invalid")
+            return
+        }
+        /*if (values.phoneNumber.length == 0 || values.phoneNumber == '' || values.phoneNumber == ' ') {
+            displayAlert();
+            console.log(values)
+            console.log("Phone invalid")
+            return
+        }*/
+        if (values.email.length == 0 || values.email == '' || values.email == ' ') {
+            displayAlert();
+            console.log("Email invalid")
+            return
+        }
+        if (values.password.length == 0 || values.password.length < 8 || values.password == '' || values.password == ' ') {
+            displayAlert();
+            console.log("Password invalid")
+            return
+        }
+        console.log(10)
         const res = await mainApi.post('/acounts/signup', {
             name: values.name,
             email:values.email,
             password: values.password,
-            phone: values.phoneNumber
+            phone: '41987232750'
         });
         console.log(res)
     }
 
     const login = async() => {
+
+        if (values.email.length == 0 || values.email == '' || values.email == ' ') {
+            displayAlert();
+            console.log("Email invalid")
+            return
+        }
+        if (values.password.length == 0 || values.password.length < 8 || values.password == '' || values.password == ' ') {
+            displayAlert();
+            console.log("Password invalid")
+            return
+        }
+
         const res = await mainApi.post('/acounts/signin', {
             login: values.email,
             password: values.password
         });
-        //console.log(res.data.token)
+        console.log(res)
         setToken(res.data.token);
-        console.log(token)
+        localStorage.setItem('tk', token);
+        const res2 = await mainApi.get('/main');
+        console.log(res2)
     }
 
     return (
         <section className="full-page">
             <form className="form">
                 <Logo />
+
+
+                {
+                    showAlert &&
+                    <h1>
+                        showAlert
+                    </h1>
+                }
 
                 {
                     !values.isMember && 
