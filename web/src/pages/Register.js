@@ -83,8 +83,10 @@ const Register = () => {
         console.log(res)
         setToken(res.data.token);
         localStorage.setItem('tk', token);
-        const res2 = await mainApi.get('/main');
-        console.log(res2)
+
+        if(res.status == 200) {
+            window.location.href = '/application'
+        }
     }
 
     return (
