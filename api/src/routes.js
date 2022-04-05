@@ -17,7 +17,8 @@ class Routes {
         this.routes.post('/acounts/signin', LoginController.SignIn);
         this.routes.use(Jwt);
         this.routes.get('/main', (req,res) => {
-            return res.status(200).json(10);
+            const { id, name } = req;
+            return res.status(200).json({ id, name });
         })
     }
 }

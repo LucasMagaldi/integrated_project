@@ -6,7 +6,7 @@ export default async function(req,res,next) {
     const authHeader = req.headers['authorization'];
     //console.log(authHeader)
     const [ prefix, token ] = authHeader.split(' ');
-    //console.log(prefix)
+    console.log(prefix)
 
     try {
         const decoded = await promisify(jwt.verify)(prefix, auth.secret);
@@ -15,12 +15,15 @@ export default async function(req,res,next) {
                 status: false, mensage: "Decoded fail"
             });
         }
+        
+        console.log(decoded)
+
         req.id = decoded.id;
         req.name = decoded.name   
-        
+        //console.log(req)
         return next()
         } catch(error) {
-            //console.log('JWt fail auth')
+            console.log('JWt fail auth')
         return res.status(500).json({status: false, mensage: "Error System"})
     }
 
